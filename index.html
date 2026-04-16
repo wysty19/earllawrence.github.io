@@ -4,8 +4,81 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Earl Lawrence C. Billones | Portfolio</title>
-
-  <link rel="stylesheet" href="style.css" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      background: #f4f8fc;
+      color: #1e293b;
+    }
+    header {
+      background: linear-gradient(135deg, #0f172a, #1d4ed8);
+      color: white;
+      padding: 80px 20px;
+      text-align: center;
+    }
+    header h1 { font-size: 3rem; margin-bottom: 10px; }
+    header h2 { font-size: 1.5rem; font-weight: 400; margin-bottom: 15px; }
+    header p { max-width: 700px; margin: auto; font-size: 1.1rem; }
+    nav {
+      background: #ffffff;
+      padding: 15px;
+      text-align: center;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+      position: sticky;
+      top: 0;
+    }
+    nav a {
+      margin: 0 15px;
+      text-decoration: none;
+      color: #1d4ed8;
+      font-weight: bold;
+    }
+    section {
+      max-width: 1100px;
+      margin: 50px auto;
+      padding: 0 20px;
+    }
+    h3 {
+      color: #1d4ed8;
+      margin-bottom: 20px;
+      font-size: 2rem;
+    }
+    .skills, .projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+    .card {
+      background: white;
+      padding: 25px;
+      border-radius: 18px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+      transition: transform 0.2s ease;
+    }
+    .card:hover { transform: translateY(-5px); }
+    footer {
+      background: #0f172a;
+      color: white;
+      text-align: center;
+      padding: 25px;
+      margin-top: 50px;
+    }
+      .hero-btn {
+      display: inline-block;
+      margin-top: 25px;
+      padding: 12px 24px;
+      background: white;
+      color: #1d4ed8;
+      text-decoration: none;
+      border-radius: 12px;
+      font-weight: bold;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+    .hero-btn:hover { opacity: 0.9; }
+    .card h4 { margin-bottom: 10px; color: #0f172a; }
+  </style>
 </head>
 <body>
   <header>
@@ -25,7 +98,7 @@
   <section id="about">
     <h3>About Me</h3>
     <div class="card">
-      <p>I am a fresh Information Technology graduate with strong passion for software development, web design, and database systems. I enjoy creating user friendly and functional applications that solve real world problems. My experience includes academic projects, web development, and internship related systems work.</p>
+      <p>I am a fresh Information Technology graduate with strong passion for software development, web design, and database systems. I enjoy creating user-friendly and functional applications that solve real-world problems. My experience includes academic projects, web development, and internship-related systems work.</p>
     </div>
   </section>
 
@@ -45,7 +118,7 @@
     <div class="projects">
       <div class="card">
         <h4>Smart Pet Feeder</h4>
-        <p>IoT-based real time pet feeding system with mobile app integration and monitoring features.</p>
+        <p>IoT-based real-time pet feeding system with mobile app integration and monitoring features.</p>
       </div>
       <div class="card">
         <h4>Book of Accounts Database (PhilHealth)</h4>
@@ -65,16 +138,17 @@
   <section id="contact">
     <h3>Contact & Resume</h3>
     <div class="card">
-      <p><strong>Email:</strong> billones.lawrence19@gmail.com</p>
-      <p><strong>GitHub:</strong> github.com/wysty19</p>
-      <p><strong>LinkedIn:</strong> linkedin.com/in/yourprofile</p>
+      <p>Email: youremail@example.com</p>
+      <p>GitHub: github.com/yourusername</p>
+      <p>LinkedIn: linkedin.com/in/yourprofile</p>
+      <p><strong>Resume:</strong> Available upon request during interview</p>
     </div>
   </section>
 
   <footer>
     <p>© 2026 Earl Lawrence C. Billones | Portfolio Website</p>
   </footer>
-
-  <script src="script.js"></script>
 </body>
 </html>
+
+
