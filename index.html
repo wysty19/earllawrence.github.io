@@ -5,22 +5,41 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Earl Lawrence C. Billones | Portfolio</title>
   <style>
+    /* --- Core Reset --- */
     * { box-sizing: border-box; margin: 0; padding: 0; }
+    
     body {
-      font-family: Arial, sans-serif;
+      font-family: Arial, sans-serif; /* Updated Font */
       line-height: 1.6;
-      background: #f4f8fc;
+      background: #f4f8fc; /* Updated Background */
       color: #1e293b;
     }
+
     header {
       background: linear-gradient(135deg, #0f172a, #1d4ed8);
       color: white;
-      padding: 80px 20px;
+      padding: 80px 20px; /* Reference padding */
       text-align: center;
     }
+
     header h1 { font-size: 3rem; margin-bottom: 10px; }
     header h2 { font-size: 1.5rem; font-weight: 400; margin-bottom: 15px; }
     header p { max-width: 700px; margin: auto; font-size: 1.1rem; }
+    
+    .hero-btn {
+      display: inline-block;
+      margin-top: 25px;
+      padding: 12px 24px;
+      background: white;
+      color: #1d4ed8;
+      text-decoration: none;
+      border-radius: 12px; /* Reference border radius */
+      font-weight: bold;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      transition: opacity 0.2s;
+    }
+    .hero-btn:hover { opacity: 0.9; }
+
     nav {
       background: #ffffff;
       padding: 15px;
@@ -28,59 +47,111 @@
       box-shadow: 0 2px 10px rgba(0,0,0,0.08);
       position: sticky;
       top: 0;
+      z-index: 1000;
     }
+
     nav a {
       margin: 0 15px;
       text-decoration: none;
       color: #1d4ed8;
       font-weight: bold;
     }
+
     section {
       max-width: 1100px;
       margin: 50px auto;
       padding: 0 20px;
     }
+
     h3 {
       color: #1d4ed8;
-      margin-bottom: 20px;
+      margin-bottom: 25px;
       font-size: 2rem;
     }
-    .skills, .projects {
+
+    /* --- Featured Projects Gallery Logic Maintained --- */
+    .projects-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
+      grid-template-columns: 1fr;
+      gap: 40px;
     }
+
+    .project-card {
+      background: white;
+      border-radius: 18px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    }
+
+    .project-gallery {
+      display: flex;
+      overflow-x: auto; 
+      scroll-snap-type: x mandatory;
+      gap: 20px;
+      padding: 20px;
+      background: #F1F5F9;
+      height: 400px;
+      align-items: center;
+    }
+
+    .project-gallery::-webkit-scrollbar { height: 6px; }
+    .project-gallery::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 10px; }
+
+    .project-gallery img {
+      flex: 0 0 auto;
+      height: 100%;
+      width: auto;
+      max-width: 100%;
+      object-fit: contain;
+      border-radius: 12px;
+      scroll-snap-align: center;
+      background: white;
+    }
+
+    .project-info { padding: 30px; }
+    .project-info h4 { font-size: 1.6rem; margin-bottom: 10px; color: #0f172a; }
+    .project-info p { color: #64748B; }
+
+    /* --- General Components --- */
     .card {
       background: white;
       padding: 25px;
       border-radius: 18px;
       box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-      transition: transform 0.2s ease;
     }
-    .card:hover { transform: translateY(-5px); }
+
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .skill-tag {
+      background: #e2e8f0;
+      padding: 8px 18px;
+      border-radius: 50px;
+      font-weight: bold;
+      font-size: 0.85rem;
+      color: #475569;
+    }
+
     footer {
-      background: #0f172a;
+      background: #0F172A;
       color: white;
       text-align: center;
-      padding: 25px;
+      padding: 30px;
       margin-top: 50px;
     }
-      .hero-btn {
-      display: inline-block;
-      margin-top: 25px;
-      padding: 12px 24px;
-      background: white;
-      color: #1d4ed8;
-      text-decoration: none;
-      border-radius: 12px;
-      font-weight: bold;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+
+    @media (min-width: 1024px) {
+      .projects-grid { grid-template-columns: repeat(2, 1fr); }
     }
-    .hero-btn:hover { opacity: 0.9; }
-    .card h4 { margin-bottom: 10px; color: #0f172a; }
   </style>
 </head>
 <body>
+
   <header>
     <h1>Earl Lawrence C. Billones</h1>
     <h2>Aspiring Software Developer</h2>
@@ -98,56 +169,86 @@
   <section id="about">
     <h3>About Me</h3>
     <div class="card">
-      <p>I am a fresh Information Technology graduate with strong passion for software development, web design, and database systems. I enjoy creating user-friendly and functional applications that solve real-world problems. My experience includes academic projects, web development, and internship-related systems work.</p>
+      <p>I am a fresh Information Technology graduate with a strong passion for software development and web design. I focus on creating user-friendly, high-performance applications that bridge the gap between hardware and software. My experience includes academic projects, web development, and internship-related systems work.</p>
     </div>
   </section>
 
   <section id="skills">
     <h3>Technical Skills</h3>
     <div class="skills">
-      <div class="card">Java</div>
-      <div class="card">HTML</div>
-      <div class="card">CSS</div>
-      <div class="card">JavaScript</div>
-      <div class="card">MySQL</div>
+      <div class="skill-tag">Java</div>
+      <div class="skill-tag">HTML5</div>
+      <div class="skill-tag">CSS3</div>
+      <div class="skill-tag">JavaScript</div>
+      <div class="skill-tag">MySQL</div>
     </div>
   </section>
 
   <section id="projects">
     <h3>Featured Projects</h3>
-    <div class="projects">
-      <div class="card">
-        <h4>Smart Pet Feeder</h4>
-        <p>IoT-based real-time pet feeding system with mobile app integration and monitoring features.</p>
+    <div class="projects-grid">
+      
+      <div class="project-card">
+        <div class="project-gallery">
+          <img src="petfeeder.jpg" alt="Pet Feeder View 1">
+          <img src="login.jpg" alt="Login Screen">
+          <img src="sched.jpg" alt="Scheduling UI">
+        </div>
+        <div class="project-info">
+          <h4>Smart Pet Feeder</h4>
+          <p>An IoT solution using ESP32 and Firebase for remote monitoring and scheduling. Features real-time alerts and weight tracking.</p>
+        </div>
       </div>
-      <div class="card">
-        <h4>Book of Accounts Database (PhilHealth)</h4>
-        <p>Database system project focused on records organization and efficient account management.</p>
+
+      <div class="project-card">
+        <div class="project-gallery">
+          <img src="database.jpg" alt="PhilHealth Login">
+        </div>
+        <div class="project-info">
+          <h4>PhilHealth Database</h4>
+          <p>A specialized Book of Accounts system designed to streamline record organization and retrieval for PhilHealth accounts.</p>
+        </div>
       </div>
-      <div class="card">
-        <h4>Simple Online Shop</h4>
-        <p>E-commerce prototype with product listing, cart functionality, and clean UI.</p>
+
+      <div class="project-card">
+        <div class="project-gallery">
+          <img src="shop1.jpg" alt="Shop Home">
+          <img src="shop2.jpg" alt="Cart System">
+          <img src="shop3.jpg" alt="Checkout Logic">
+        </div>
+        <div class="project-info">
+          <h4>Simple Online Shop</h4>
+          <p>A modern e-commerce prototype with dynamic cart updates and a clean, responsive product catalog.</p>
+        </div>
       </div>
-      <div class="card">
-        <h4>AHAFY Company Website</h4>
-        <p>Professional company website with modern layout, responsive design, and animations.</p>
+
+      <div class="project-card">
+        <div class="project-gallery">
+          <img src="ahafy1.jpg" alt="AHAFY Hero">
+          <img src="ahafy2.jpg" alt="Services">
+          <img src="ahafy3.jpg" alt="Contact">
+        </div>
+        <div class="project-info">
+          <h4>AHAFY Company Website</h4>
+          <p>A professional agency site built with a focus on smooth animations and corporate branding identity.</p>
+        </div>
       </div>
+
     </div>
   </section>
 
-<section id="Internship">
+  <section id="Internship">
     <h3>Internship</h3>
     <div class="card">
       <p><strong>PhilHealth</strong></p>
-      <p>-Assisted in Tech Support</p>
-      <p>-Managed system documentation</p>
+      <p style="margin-top: 10px; color: #64748B;">- Assisted in Tech Support<br>- Managed system documentation</p>
     </div>
   </section>
 
   <section id="contact">
     <h3>Contact</h3>
     <div class="card">
-      <p><strong>Email:</strong>youremail@example.com</p>
+      <p><strong>Email:</strong> youremail@example.com</p>
       <p><strong>GitHub:</strong> github.com/yourusername</p>
     </div>
   </section>
@@ -155,7 +256,6 @@
   <footer>
     <p>© 2026 Earl Lawrence C. Billones | Portfolio Website</p>
   </footer>
+
 </body>
 </html>
-
-
