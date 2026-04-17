@@ -83,7 +83,6 @@
       box-shadow: 0 4px 15px rgba(0,0,0,0.08);
     }
 
-    /* --- Swipe Gallery (ALL projects) --- */
     .swipe-gallery-wrapper {
       position: relative;
       background: #F1F5F9;
@@ -117,8 +116,8 @@
       border-radius: 12px;
       background: white;
       user-select: none;
-      pointer-events: none;
       display: block;
+      cursor: zoom-in;
     }
 
     .swipe-btn {
@@ -213,9 +212,80 @@
     @media (min-width: 1024px) {
       .projects-grid { grid-template-columns: repeat(2, 1fr); }
     }
+
+    /* ── LIGHTBOX ── */
+    #lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.93);
+      z-index: 99999;
+      align-items: center;
+      justify-content: center;
+    }
+    #lightbox.open {
+      display: flex;
+    }
+    #lb-img {
+      max-width: 90vw;
+      max-height: 85vh;
+      object-fit: contain;
+      border-radius: 10px;
+      display: block;
+    }
+    #lb-close {
+      position: fixed;
+      top: 16px;
+      right: 20px;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 2.5rem;
+      cursor: pointer;
+      line-height: 1;
+      z-index: 100000;
+    }
+    #lb-prev, #lb-next {
+      position: fixed;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255,255,255,0.18);
+      border: none;
+      color: white;
+      font-size: 2rem;
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 100000;
+    }
+    #lb-prev { left: 14px; }
+    #lb-next { right: 14px; }
+    #lb-prev:hover, #lb-next:hover { background: rgba(255,255,255,0.35); }
+    #lb-counter {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: rgba(255,255,255,0.6);
+      font-size: 0.9rem;
+      font-family: Arial, sans-serif;
+    }
   </style>
 </head>
 <body>
+
+  <!-- LIGHTBOX -->
+  <div id="lightbox">
+    <button id="lb-close">&#x2715;</button>
+    <button id="lb-prev">&#8249;</button>
+    <img id="lb-img" src="" alt="" />
+    <button id="lb-next">&#8250;</button>
+    <div id="lb-counter"></div>
+  </div>
 
   <header>
     <h1>Earl Lawrence C. Billones</h1>
@@ -228,6 +298,7 @@
     <a href="#about">About</a>
     <a href="#skills">Skills</a>
     <a href="#projects">Projects</a>
+    <a href="#certificates">Certificates</a>
     <a href="#contact">Contact</a>
   </nav>
 
@@ -252,7 +323,7 @@
   <section id="projects">
     <h3>Featured Projects</h3>
     <div class="projects-grid">
-      
+
       <!-- SMART PET FEEDER -->
       <div class="project-card">
         <div class="swipe-gallery-wrapper">
@@ -272,7 +343,7 @@
         </div>
         <div class="project-info">
           <h4>Smart Pet Feeder</h4>
-          <p>An IoT solution using Arduino nano 33 and Firebase for remote monitoring and scheduling. Features real-time alerts and food scheduling.</p>
+          <p>The Smart Pet Feeder is intended to give pet owners a practical, automated, and real-time feeding option. Even when their owners go on vacation, it guarantees that pets get meals on schedule. A healthier and more organized feeding schedule is ensured by the system's adoption of IoT technology, which enables remote monitoring and scheduling of feeding times via a web interface or mobile app.</p>
         </div>
       </div>
 
@@ -314,9 +385,9 @@
       <div class="project-card">
         <div class="swipe-gallery-wrapper">
           <div class="swipe-gallery" data-gallery>
-            <div class="swipe-slide"><img src="ahafy1.jpg" alt="AHAFY Hero"></div>
-            <div class="swipe-slide"><img src="ahafy2.jpg" alt="Services"></div>
-            <div class="swipe-slide"><img src="ahafy3.jpg" alt="Contact"></div>
+            <div class="swipe-slide"><img src="ahafy.png" alt="AHAFY Hero"></div>
+            <div class="swipe-slide"><img src="ahafy2.png" alt="Services"></div>
+            <div class="swipe-slide"><img src="ahafy3.png" alt="Contact"></div>
           </div>
           <button class="swipe-btn prev">&#8249;</button>
           <button class="swipe-btn next">&#8250;</button>
@@ -324,7 +395,7 @@
         </div>
         <div class="project-info">
           <h4>AHAFY Company Website</h4>
-          <p>AHAFY is our start up company where we build websites,application,brandkit or anything you need. Its a company that you just need to tell us the datails and we will make it.</p>
+          <p>AHAFY is our start up company where we build websites, applications, brandkit, video editing or anything you need. Its a company that you just need to tell us the details and we will make it.</p>
         </div>
       </div>
 
@@ -339,10 +410,69 @@
     </div>
   </section>
 
+  <!-- CERTIFICATES -->
+  <section id="certificates">
+    <h3>Certificates</h3>
+    <div class="projects-grid" style="grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px;">
+
+      <!-- Cisco -->
+      <div class="project-card">
+        <div class="swipe-gallery-wrapper">
+          <div class="swipe-gallery" data-gallery>
+            <div class="swipe-slide"><img src="cisco.png" alt="Cisco Certificate"></div>
+            <div class="swipe-slide"><img src="cisco badge.png" alt="Cisco Badge"></div>
+          </div>
+          <button class="swipe-btn prev">&#8249;</button>
+          <button class="swipe-btn next">&#8250;</button>
+          <div class="swipe-dots"></div>
+        </div>
+        <div class="project-info">
+          <h4>Cisco Networking Basics</h4>
+          <p>Completed Cisco's official Networking Basics course covering foundational networking concepts and protocols.</p>
+        </div>
+      </div>
+
+      <!-- PhilHealth -->
+      <div class="project-card">
+        <div class="swipe-gallery-wrapper">
+          <div class="swipe-gallery" data-gallery>
+            <div class="swipe-slide"><img src="philhealth.jpg" alt="PhilHealth Certificate"></div>
+          </div>
+          <button class="swipe-btn prev">&#8249;</button>
+          <button class="swipe-btn next">&#8250;</button>
+          <div class="swipe-dots"></div>
+        </div>
+        <div class="project-info">
+          <h4>PhilHealth Internship Certificate</h4>
+          <p>Certificate of completion from PhilHealth internship, recognizing contributions to tech support and system documentation.</p>
+        </div>
+      </div>
+
+      <!-- NC2 -->
+      <div class="project-card">
+        <div class="swipe-gallery-wrapper">
+          <div class="swipe-gallery" data-gallery>
+            <div class="swipe-slide"><img src="ncII.jpg" alt="NC2 Certificate"></div>
+            <div class="swipe-slide"><img src="css.jpg" alt="NC2 Certificate 2"></div>
+          </div>
+          <button class="swipe-btn prev">&#8249;</button>
+          <button class="swipe-btn next">&#8250;</button>
+          <div class="swipe-dots"></div>
+        </div>
+        <div class="project-info">
+          <h4>NC2 — National Certificate II</h4>
+          <p>TESDA National Certificate II, demonstrating competency in computer systems servicing.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
   <section id="contact">
     <h3>Contact</h3>
     <div class="card">
       <p><strong>Email:</strong> billones.lawrence19@gmail.com</p>
+      <p><strong>Contact no.:</strong> 09942619417</p>
       <p><strong>GitHub:</strong> github.com/wysty19</p>
     </div>
   </section>
@@ -352,55 +482,132 @@
   </footer>
 
   <script>
-    document.querySelectorAll('.swipe-gallery-wrapper').forEach(wrapper => {
-      const track = wrapper.querySelector('[data-gallery]');
-      const dotsContainer = wrapper.querySelector('.swipe-dots');
-      const prevBtn = wrapper.querySelector('.swipe-btn.prev');
-      const nextBtn = wrapper.querySelector('.swipe-btn.next');
-      const total = track.children.length;
-      let current = 0;
-      let startX = 0;
+    // ── Gallery + Lightbox data ──
+    var lbImages = [];
+    var lbIndex  = 0;
+    var lb       = document.getElementById('lightbox');
+    var lbImg    = document.getElementById('lb-img');
+    var lbCount  = document.getElementById('lb-counter');
+
+    function lbOpen(images, index) {
+      lbImages = images;
+      lbIndex  = index;
+      lbShow();
+      lb.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function lbShow() {
+      lbImg.src = lbImages[lbIndex].src;
+      lbImg.alt = lbImages[lbIndex].alt;
+      lbCount.textContent = lbImages.length > 1 ? (lbIndex + 1) + ' / ' + lbImages.length : '';
+      document.getElementById('lb-prev').style.display = lbImages.length > 1 ? 'flex' : 'none';
+      document.getElementById('lb-next').style.display = lbImages.length > 1 ? 'flex' : 'none';
+    }
+
+    function lbClose() {
+      lb.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    document.getElementById('lb-close').onclick = lbClose;
+
+    document.getElementById('lb-prev').onclick = function() {
+      lbIndex = (lbIndex - 1 + lbImages.length) % lbImages.length;
+      lbShow();
+    };
+
+    document.getElementById('lb-next').onclick = function() {
+      lbIndex = (lbIndex + 1) % lbImages.length;
+      lbShow();
+    };
+
+    // Click dark area outside image to close
+    lb.onclick = function(e) {
+      if (e.target === lb) lbClose();
+    };
+
+    // Keyboard
+    document.onkeydown = function(e) {
+      if (!lb.classList.contains('open')) return;
+      if (e.key === 'Escape') lbClose();
+      if (e.key === 'ArrowLeft')  { lbIndex = (lbIndex - 1 + lbImages.length) % lbImages.length; lbShow(); }
+      if (e.key === 'ArrowRight') { lbIndex = (lbIndex + 1) % lbImages.length; lbShow(); }
+    };
+
+    // Touch swipe in lightbox
+    var lbTouchX = 0;
+    lb.addEventListener('touchstart', function(e) { lbTouchX = e.touches[0].clientX; }, { passive: true });
+    lb.addEventListener('touchend', function(e) {
+      var diff = lbTouchX - e.changedTouches[0].clientX;
+      if (Math.abs(diff) > 50) {
+        lbIndex = (lbIndex + (diff > 0 ? 1 : -1) + lbImages.length) % lbImages.length;
+        lbShow();
+      }
+    });
+
+    // ── Init each swipe gallery ──
+    document.querySelectorAll('.swipe-gallery-wrapper').forEach(function(wrapper) {
+      var track  = wrapper.querySelector('[data-gallery]');
+      var dots   = wrapper.querySelector('.swipe-dots');
+      var prev   = wrapper.querySelector('.swipe-btn.prev');
+      var next   = wrapper.querySelector('.swipe-btn.next');
+      var slides = track.children;
+      var total  = slides.length;
+      var cur    = 0;
+      var startX = 0;
+      var dragging = false;
 
       // Build dots
-      for (let i = 0; i < total; i++) {
-        const dot = document.createElement('button');
-        dot.className = 'swipe-dot' + (i === 0 ? ' active' : '');
-        dot.addEventListener('click', () => goTo(i));
-        dotsContainer.appendChild(dot);
+      for (var i = 0; i < total; i++) {
+        (function(idx) {
+          var dot = document.createElement('button');
+          dot.className = 'swipe-dot' + (idx === 0 ? ' active' : '');
+          dot.onclick = function() { goTo(idx); };
+          dots.appendChild(dot);
+        })(i);
       }
 
-      // Hide arrows and dots if only 1 slide
       if (total <= 1) {
-        prevBtn.style.display = 'none';
-        nextBtn.style.display = 'none';
-        dotsContainer.style.display = 'none';
+        prev.style.display = 'none';
+        next.style.display = 'none';
+        dots.style.display = 'none';
       }
 
       function goTo(index) {
-        current = (index + total) % total;
-        track.style.transform = `translateX(-${current * 100}%)`;
-        dotsContainer.querySelectorAll('.swipe-dot').forEach((d, i) =>
-          d.classList.toggle('active', i === current));
+        cur = (index + total) % total;
+        track.style.transform = 'translateX(-' + (cur * 100) + '%)';
+        dots.querySelectorAll('.swipe-dot').forEach(function(d, i) {
+          d.classList.toggle('active', i === cur);
+        });
       }
 
-      prevBtn.addEventListener('click', () => goTo(current - 1));
-      nextBtn.addEventListener('click', () => goTo(current + 1));
+      prev.onclick = function() { goTo(cur - 1); };
+      next.onclick = function() { goTo(cur + 1); };
 
-      // Touch swipe
-      track.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
-      track.addEventListener('touchend', e => {
-        const diff = startX - e.changedTouches[0].clientX;
-        if (Math.abs(diff) > 40) goTo(current + (diff > 0 ? 1 : -1));
+      // Touch swipe on gallery
+      track.addEventListener('touchstart', function(e) { startX = e.touches[0].clientX; }, { passive: true });
+      track.addEventListener('touchend', function(e) {
+        var diff = startX - e.changedTouches[0].clientX;
+        if (Math.abs(diff) > 40) goTo(cur + (diff > 0 ? 1 : -1));
       });
 
       // Mouse drag
-      let isDragging = false;
-      track.addEventListener('mousedown', e => { startX = e.clientX; isDragging = true; });
-      track.addEventListener('mouseup', e => {
-        if (!isDragging) return;
-        isDragging = false;
-        const diff = startX - e.clientX;
-        if (Math.abs(diff) > 40) goTo(current + (diff > 0 ? 1 : -1));
+      track.addEventListener('mousedown', function(e) { startX = e.clientX; dragging = true; });
+      track.addEventListener('mouseup', function(e) {
+        if (!dragging) return;
+        dragging = false;
+        var diff = startX - e.clientX;
+        if (Math.abs(diff) > 40) goTo(cur + (diff > 0 ? 1 : -1));
+      });
+
+      // ── Click image → open lightbox ──
+      var allImgs = Array.prototype.slice.call(track.querySelectorAll('img'));
+      allImgs.forEach(function(img, idx) {
+        img.addEventListener('click', function(e) {
+          e.stopPropagation();
+          lbOpen(allImgs, idx);
+        });
       });
     });
   </script>
