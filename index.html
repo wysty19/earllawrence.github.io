@@ -5,20 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Earl Lawrence C. Billones | Portfolio</title>
   <style>
-    /* --- Core Reset --- */
     * { box-sizing: border-box; margin: 0; padding: 0; }
     
     body {
-      font-family: Arial, sans-serif; /* Updated Font */
+      font-family: Arial, sans-serif;
       line-height: 1.6;
-      background: #f4f8fc; /* Updated Background */
+      background: #f4f8fc;
       color: #1e293b;
     }
 
     header {
       background: linear-gradient(135deg, #0f172a, #1d4ed8);
       color: white;
-      padding: 80px 20px; /* Reference padding */
+      padding: 80px 20px;
       text-align: center;
     }
 
@@ -33,7 +32,7 @@
       background: white;
       color: #1d4ed8;
       text-decoration: none;
-      border-radius: 12px; /* Reference border radius */
+      border-radius: 12px;
       font-weight: bold;
       box-shadow: 0 4px 12px rgba(0,0,0,0.15);
       transition: opacity 0.2s;
@@ -69,7 +68,6 @@
       font-size: 2rem;
     }
 
-    /* --- Featured Projects Gallery Logic Maintained --- */
     .projects-grid {
       display: grid;
       grid-template-columns: 1fr;
@@ -85,36 +83,103 @@
       box-shadow: 0 4px 15px rgba(0,0,0,0.08);
     }
 
-    .project-gallery {
-      display: flex;
-      overflow-x: auto; 
-      scroll-snap-type: x mandatory;
-      gap: 20px;
-      padding: 20px;
+    /* --- Swipe Gallery (ALL projects) --- */
+    .swipe-gallery-wrapper {
+      position: relative;
       background: #F1F5F9;
       height: 400px;
-      align-items: center;
+      overflow: hidden;
     }
 
-    .project-gallery::-webkit-scrollbar { height: 6px; }
-    .project-gallery::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 10px; }
-
-    .project-gallery img {
-      flex: 0 0 auto;
+    .swipe-gallery {
+      display: flex;
       height: 100%;
-      width: auto;
+      width: 100%;
+      transition: transform 0.35s ease;
+      will-change: transform;
+    }
+
+    .swipe-slide {
+      flex: 0 0 100%;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background: #F1F5F9;
+    }
+
+    .swipe-slide img {
       max-width: 100%;
+      max-height: 100%;
       object-fit: contain;
       border-radius: 12px;
-      scroll-snap-align: center;
       background: white;
+      user-select: none;
+      pointer-events: none;
+      display: block;
     }
 
-    .project-info { padding: 30px; }
-    .project-info h4 { font-size: 1.6rem; margin-bottom: 10px; color: #0f172a; }
-    .project-info p { color: #64748B; }
+    .swipe-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255,255,255,0.85);
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      font-size: 1.3rem;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+      z-index: 10;
+      transition: background 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #1d4ed8;
+    }
+    .swipe-btn:hover { background: white; }
+    .swipe-btn.prev { left: 10px; }
+    .swipe-btn.next { right: 10px; }
 
-    /* --- General Components --- */
+    .swipe-dots {
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 6px;
+    }
+
+    .swipe-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #CBD5E1;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      transition: background 0.2s;
+    }
+    .swipe-dot.active { background: #1d4ed8; }
+
+    .project-info {
+      padding: 20px 25px 25px;
+    }
+
+    .project-info h4 {
+      font-size: 1.2rem;
+      color: #1e293b;
+      margin-bottom: 8px;
+    }
+
+    .project-info p {
+      color: #64748b;
+      font-size: 0.95rem;
+    }
+
     .card {
       background: white;
       padding: 25px;
@@ -177,8 +242,8 @@
     <h3>Technical Skills</h3>
     <div class="skills">
       <div class="skill-tag">Java</div>
-      <div class="skill-tag">HTML5</div>
-      <div class="skill-tag">CSS3</div>
+      <div class="skill-tag">HTML</div>
+      <div class="skill-tag">CSS</div>
       <div class="skill-tag">JavaScript</div>
       <div class="skill-tag">MySQL</div>
     </div>
@@ -188,45 +253,74 @@
     <h3>Featured Projects</h3>
     <div class="projects-grid">
       
+      <!-- SMART PET FEEDER -->
       <div class="project-card">
-        <div class="project-gallery">
-          <img src="petfeeder.jpg" alt="Pet Feeder View 1">
-          <img src="login.jpg" alt="Login Screen">
-          <img src="sched.jpg" alt="Scheduling UI">
+        <div class="swipe-gallery-wrapper">
+          <div class="swipe-gallery" data-gallery>
+            <div class="swipe-slide"><img src="petfeeder.jpg" alt="Pet Feeder View 1"></div>
+            <div class="swipe-slide"><img src="login.jpg" alt="Login Screen"></div>
+            <div class="swipe-slide"><img src="sched.jpg" alt="Scheduling UI"></div>
+            <div class="swipe-slide"><img src="schedule.jpg" alt="Scheduling UI"></div>
+            <div class="swipe-slide"><img src="home.jpg" alt="Home UI"></div>
+            <div class="swipe-slide"><img src="icon.png" alt="Icon"></div>
+            <div class="swipe-slide"><img src="blueprint.jpg" alt="Blueprint"></div>
+            <div class="swipe-slide"><img src="finalOutput.jpg" alt="Final Output"></div>
+          </div>
+          <button class="swipe-btn prev">&#8249;</button>
+          <button class="swipe-btn next">&#8250;</button>
+          <div class="swipe-dots"></div>
         </div>
         <div class="project-info">
           <h4>Smart Pet Feeder</h4>
-          <p>An IoT solution using ESP32 and Firebase for remote monitoring and scheduling. Features real-time alerts and weight tracking.</p>
+          <p>An IoT solution using Arduino nano 33 and Firebase for remote monitoring and scheduling. Features real-time alerts and food scheduling.</p>
         </div>
       </div>
 
+      <!-- PHILHEALTH DATABASE -->
       <div class="project-card">
-        <div class="project-gallery">
-          <img src="database.jpg" alt="PhilHealth Login">
+        <div class="swipe-gallery-wrapper">
+          <div class="swipe-gallery" data-gallery>
+            <div class="swipe-slide"><img src="database.png" alt="PhilHealth Database"></div>
+          </div>
+          <button class="swipe-btn prev">&#8249;</button>
+          <button class="swipe-btn next">&#8250;</button>
+          <div class="swipe-dots"></div>
         </div>
         <div class="project-info">
           <h4>PhilHealth Database</h4>
-          <p>A specialized Book of Accounts system designed to streamline record organization and retrieval for PhilHealth accounts.</p>
+          <p>An internal tool created to modernize account management for PhilHealth records. It transforms messy financial data into an organized, searchable, and exportable digital ledger, providing administrative staff with a "single source of truth" for transaction history.</p>
         </div>
       </div>
 
+      <!-- SIMPLE ONLINE SHOP -->
       <div class="project-card">
-        <div class="project-gallery">
-          <img src="shop1.jpg" alt="Shop Home">
-          <img src="shop2.jpg" alt="Cart System">
-          <img src="shop3.jpg" alt="Checkout Logic">
+        <div class="swipe-gallery-wrapper">
+          <div class="swipe-gallery" data-gallery>
+            <div class="swipe-slide"><img src="homenoel.png" alt="Shop Home"></div>
+            <div class="swipe-slide"><img src="shop.png" alt="Cart System"></div>
+            <div class="swipe-slide"><img src="contacts.png" alt="Checkout Logic"></div>
+          </div>
+          <button class="swipe-btn prev">&#8249;</button>
+          <button class="swipe-btn next">&#8250;</button>
+          <div class="swipe-dots"></div>
         </div>
         <div class="project-info">
           <h4>Simple Online Shop</h4>
-          <p>A modern e-commerce prototype with dynamic cart updates and a clean, responsive product catalog.</p>
+          <p>"This was one of my first deep dives into frontend design. The focus wasn't just on making it look good, but making it responsive. It's a clean, minimalist landing page prototype that taught me how to handle 'Hero' layouts and mobile navigation menus properly."</p>
         </div>
       </div>
 
+      <!-- AHAFY COMPANY WEBSITE -->
       <div class="project-card">
-        <div class="project-gallery">
-          <img src="ahafy1.jpg" alt="AHAFY Hero">
-          <img src="ahafy2.jpg" alt="Services">
-          <img src="ahafy3.jpg" alt="Contact">
+        <div class="swipe-gallery-wrapper">
+          <div class="swipe-gallery" data-gallery>
+            <div class="swipe-slide"><img src="ahafy1.jpg" alt="AHAFY Hero"></div>
+            <div class="swipe-slide"><img src="ahafy2.jpg" alt="Services"></div>
+            <div class="swipe-slide"><img src="ahafy3.jpg" alt="Contact"></div>
+          </div>
+          <button class="swipe-btn prev">&#8249;</button>
+          <button class="swipe-btn next">&#8250;</button>
+          <div class="swipe-dots"></div>
         </div>
         <div class="project-info">
           <h4>AHAFY Company Website</h4>
@@ -248,14 +342,68 @@
   <section id="contact">
     <h3>Contact</h3>
     <div class="card">
-      <p><strong>Email:</strong> youremail@example.com</p>
-      <p><strong>GitHub:</strong> github.com/yourusername</p>
+      <p><strong>Email:</strong> billones.lawrence19@gmail.com</p>
+      <p><strong>GitHub:</strong> github.com/wysty19</p>
     </div>
   </section>
 
   <footer>
     <p>© 2026 Earl Lawrence C. Billones | Portfolio Website</p>
   </footer>
+
+  <script>
+    document.querySelectorAll('.swipe-gallery-wrapper').forEach(wrapper => {
+      const track = wrapper.querySelector('[data-gallery]');
+      const dotsContainer = wrapper.querySelector('.swipe-dots');
+      const prevBtn = wrapper.querySelector('.swipe-btn.prev');
+      const nextBtn = wrapper.querySelector('.swipe-btn.next');
+      const total = track.children.length;
+      let current = 0;
+      let startX = 0;
+
+      // Build dots
+      for (let i = 0; i < total; i++) {
+        const dot = document.createElement('button');
+        dot.className = 'swipe-dot' + (i === 0 ? ' active' : '');
+        dot.addEventListener('click', () => goTo(i));
+        dotsContainer.appendChild(dot);
+      }
+
+      // Hide arrows and dots if only 1 slide
+      if (total <= 1) {
+        prevBtn.style.display = 'none';
+        nextBtn.style.display = 'none';
+        dotsContainer.style.display = 'none';
+      }
+
+      function goTo(index) {
+        current = (index + total) % total;
+        track.style.transform = `translateX(-${current * 100}%)`;
+        dotsContainer.querySelectorAll('.swipe-dot').forEach((d, i) =>
+          d.classList.toggle('active', i === current));
+      }
+
+      prevBtn.addEventListener('click', () => goTo(current - 1));
+      nextBtn.addEventListener('click', () => goTo(current + 1));
+
+      // Touch swipe
+      track.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
+      track.addEventListener('touchend', e => {
+        const diff = startX - e.changedTouches[0].clientX;
+        if (Math.abs(diff) > 40) goTo(current + (diff > 0 ? 1 : -1));
+      });
+
+      // Mouse drag
+      let isDragging = false;
+      track.addEventListener('mousedown', e => { startX = e.clientX; isDragging = true; });
+      track.addEventListener('mouseup', e => {
+        if (!isDragging) return;
+        isDragging = false;
+        const diff = startX - e.clientX;
+        if (Math.abs(diff) > 40) goTo(current + (diff > 0 ? 1 : -1));
+      });
+    });
+  </script>
 
 </body>
 </html>
